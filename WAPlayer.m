@@ -13,6 +13,7 @@ InitializeSynthesizer::usage=
 
 LoadSoundBank::usage=
 "LoadSoundBank[arg___]:  Load all the instrument found in FileNames[arg] for the midi synthesizer"
+
 MMASoundFonts::usage=
 "MMASoundFonts[ ]:  Find out the folder address where Mathematica stores its own sf2 sound banks."
 
