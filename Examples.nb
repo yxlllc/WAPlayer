@@ -1,0 +1,296 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     11847,        288]
+NotebookOptionsPosition[      9515,        237]
+NotebookOutlinePosition[     10733,        272]
+CellTagsIndexPosition[     10518,        264]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Load", " ", "the", " ", "package"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"SetDirectory", "@", 
+     RowBox[{"NotebookDirectory", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"<<", "WAPlayer.m"}], "\[IndentingNewLine]", 
+   RowBox[{"?", "InitializeSynthesizer"}], "\[IndentingNewLine]", 
+   RowBox[{"?", "LoadSoundBank"}], "\[IndentingNewLine]", 
+   RowBox[{"?", "MMASoundFonts"}], "\[IndentingNewLine]", 
+   RowBox[{"?", "WAPlayer"}]}]}]], "Input",
+ CellChangeTimes->{{3.753509467628191*^9, 3.7535095113683023`*^9}, {
+  3.7535100159064445`*^9, 3.7535100334088345`*^9}, {3.7535118992449036`*^9, 
+  3.7535118995261345`*^9}, {3.7535121199018755`*^9, 3.753512126735458*^9}, {
+  3.7535168642166724`*^9, 3.75351687585367*^9}, {3.7535169073896427`*^9, 
+  3.753516931821727*^9}},
+ CellLabel->"In[56]:=",ExpressionUUID->"4fb45182-8023-4c16-8065-9bec57733d07"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"InitializeSynthesizer[ ]:  Initialize all the instrument of \
+midi synthesizer\"\>"], "Print", "PrintUsage",
+ CellChangeTimes->{3.753517288908801*^9},
+ CellTags->
+  "Info583753546088-4433996",ExpressionUUID->"7493c936-1319-4155-a4f8-\
+c76d1ce02d84"],
+
+Cell[BoxData["\<\"LoadSoundBank[arg___]:  Load all the instrument found in \
+FileNames[arg] for the midi synthesizer\"\>"], "Print", "PrintUsage",
+ CellChangeTimes->{3.753517289168642*^9},
+ CellTags->
+  "Info593753546088-4433996",ExpressionUUID->"073df009-56e3-451c-939e-\
+5b7bfb254f7c"],
+
+Cell[BoxData["\<\"MMASoundFonts[ ]:  Find out the folder address where \
+Mathematica stores its own sf2 sound banks.\"\>"], "Print", "PrintUsage",
+ CellChangeTimes->{3.753517289422002*^9},
+ CellTags->
+  "Info603753546089-4433996",ExpressionUUID->"33257a0d-b39f-4646-90ae-\
+289a09b83b90"],
+
+Cell[BoxData["\<\"WAPlayer[address_String]:  Play an audio file in the \
+disk\\nWAPlayer[sound_Sound]:  Play an Sound object in Wolfram \
+Language\\nWAPlayer[audio_Audio]:  Play an Audio object in Wolfram \
+Language\\nWAPlayer[args___]:  It is equivalent to \
+WAPlayer@Audio[args]\"\>"], "Print", "PrintUsage",
+ CellChangeTimes->{3.7535172896788445`*^9},
+ CellTags->
+  "Info613753546089-4433996",ExpressionUUID->"aa074f0f-4b41-4561-86bc-\
+488a50666086"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Load", " ", "all", " ", "the", " ", "sf2", " ", "sound", " ", "banks", 
+    " ", "of", " ", "Mathematica"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"InitializeSynthesizer", "[", "]"}], "\[IndentingNewLine]", 
+   RowBox[{"LoadSoundBank", "[", 
+    RowBox[{"\"\<*.sf2\>\"", ",", 
+     RowBox[{"MMASoundFonts", "[", "]"}]}], "]"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{
+     "You", " ", "can", " ", "also", " ", "load", " ", "your", " ", "own", 
+      " ", "sound", " ", "bank"}], ",", " ", 
+     RowBox[{"it", " ", "may", " ", "be", " ", "like", " ", "this"}]}], 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"LoadSoundBank", "[", 
+     RowBox[{"\"\<Piano.sf2\>\"", ",", "\"\<D:/MySoundbank\>\""}], "]"}], 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Make", " ", "sure", " ", "that", " ", "\"\<Piano.sf2\>\"", " ", "is", 
+     " ", "in", " ", "the", " ", "\"\<D:/MySoundbank\>\"", " ", "folder"}], 
+    "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"If", " ", "you", " ", 
+      RowBox[{"don", "'"}], "t", " ", "load", " ", "any", " ", "sound", " ", 
+      "bank"}], ",", 
+     RowBox[{
+     "it", " ", "will", " ", "use", " ", "the", " ", "default", " ", 
+      "instruments", " ", "from", " ", "the", " ", "operating", " ", 
+      "system"}]}], "*)"}]}]}]], "Input",
+ CellChangeTimes->{{3.753512785098285*^9, 3.753512852905166*^9}, {
+  3.7535129343060303`*^9, 3.7535129791202545`*^9}, {3.7535130272893248`*^9, 
+  3.7535130766491923`*^9}, {3.753513114531232*^9, 3.753513221669067*^9}, {
+  3.7535132652807055`*^9, 3.753513267199628*^9}, {3.753516958332815*^9, 
+  3.7535170374846983`*^9}, {3.753517070547969*^9, 3.753517096359131*^9}, {
+  3.7535171372029233`*^9, 3.7535171448691006`*^9}, {3.7535208718005185`*^9, 
+  3.7535208764722233`*^9}},ExpressionUUID->"5fe2bc2e-ad59-43ca-bc57-\
+877381273c6d"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Play", " ", "a", " ", "midi", " ", "files"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"WAPlayer", "[", "\"\<test.mid\>\"", "]"}]}]], "Input",
+ CellChangeTimes->{{3.7535120773167987`*^9, 3.7535120778011837`*^9}, {
+   3.7535122655021305`*^9, 3.753512282071685*^9}, {3.753512673748233*^9, 
+   3.7535126992052608`*^9}, 3.7535127870081096`*^9, {3.7535129826572976`*^9, 
+   3.7535129989292445`*^9}, {3.753513281288772*^9, 3.753513331094866*^9}, {
+   3.753515915133923*^9, 3.7535159244134903`*^9}, 3.7535165830400257`*^9},
+ CellLabel->"In[54]:=",ExpressionUUID->"aac1bf73-2398-409b-9601-bcc6657afa38"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Play", " ", "a", " ", "waveform", " ", "file"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"Any", " ", "format", " ", "in", " ", 
+    RowBox[{"guide", "/", "AudioFormats"}], " ", "can", " ", "be", " ", 
+    "played"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"WAPlayer", "[", "\"\<test.wav\>\"", "]"}]}]], "Input",
+ CellChangeTimes->{{3.753515955547822*^9, 
+  3.753515997675784*^9}},ExpressionUUID->"aaa69e04-348d-46d1-93ca-\
+8bc67d0dbb8f"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Play", " ", "a", " ", "Sound", " ", "object"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"sound", "=", 
+     RowBox[{"Sound", "[", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"SoundNote", "[", "i", "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "0", ",", "12"}], "}"}]}], "]"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"WAPlayer", "[", "sound", "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.7535127206946964`*^9, 3.753512731772254*^9}, 
+   3.7535127776410418`*^9, {3.7535133605210285`*^9, 3.7535134726865544`*^9}, {
+   3.7535135491489944`*^9, 3.7535135994050646`*^9}, {3.7535159343015327`*^9, 
+   3.7535159401163836`*^9}, 3.7535160056369944`*^9, {3.753516321953833*^9, 
+   3.7535163265162153`*^9}, 
+   3.753516591504826*^9},ExpressionUUID->"4acd1af3-f134-4ef2-8bb6-\
+6c8983a231c7"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Play", " ", "an", " ", "Audio", " ", "object"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"audio", "=", 
+     RowBox[{"Audio", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"BitAnd", "[", 
+           RowBox[{"#", ",", 
+            RowBox[{"BitShiftRight", "[", 
+             RowBox[{"#", ",", "8"}], "]"}]}], "]"}], "&"}], "@", 
+         RowBox[{"Range", "[", "65536", "]"}]}], "-", "128"}], ",", 
+       "\"\<SignedInteger8\>\"", ",", 
+       RowBox[{"SampleRate", "\[Rule]", "8192"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"WAPlayer", "[", "audio", "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.7535160161802425`*^9, 3.7535160200597315`*^9}, {
+   3.753516109906894*^9, 3.7535161244251356`*^9}, {3.7535162757375436`*^9, 
+   3.753516289397145*^9}, 3.753516594481635*^9, 3.753516740159976*^9, {
+   3.7535172231997705`*^9, 3.753517225987089*^9}, {3.753518260595066*^9, 
+   3.7535182624928665`*^9}, {3.7535183327353535`*^9, 3.753518334699876*^9}, {
+   3.7535183791513605`*^9, 3.75351841212849*^9}, {3.753518444157654*^9, 
+   3.7535184540915737`*^9}},
+ CellLabel->"In[97]:=",ExpressionUUID->"d5a36745-df5e-4d4b-9e89-1a6be3ea83a7"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "Play", " ", "an", " ", "audio", " ", "generated", " ", "directly", " ", 
+     "from", " ", "the", " ", "data"}], ",", " ", 
+    RowBox[{
+    "inherit", " ", "all", " ", "the", " ", "options", " ", "of", " ", 
+     "Audio"}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"WAPlayer", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"BitAnd", "[", 
+        RowBox[{"#", ",", 
+         RowBox[{"BitShiftRight", "[", 
+          RowBox[{"#", ",", "8"}], "]"}]}], "]"}], "&"}], "@", 
+      RowBox[{"Range", "[", 
+       RowBox[{"0", ",", "65535"}], "]"}]}], "-", "128"}], ",", 
+    "\"\<SignedInteger8\>\"", ",", 
+    RowBox[{"SampleRate", "\[Rule]", "8192"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.753516414076824*^9, 3.753516456394125*^9}, {
+   3.7535165324165545`*^9, 3.753516538224023*^9}, {3.753516576413002*^9, 
+   3.753516709823073*^9}, 3.753516757500125*^9, {3.753517228632118*^9, 
+   3.7535172305236464`*^9}, {3.753518313744356*^9, 3.7535183177544804`*^9}, {
+   3.7535183711734657`*^9, 3.753518372681012*^9}, 3.753518418438316*^9, 
+   3.7535184623800993`*^9},
+ CellLabel->"In[96]:=",ExpressionUUID->"4bef79b9-5afc-436b-bc3c-ce8f087827c4"]
+},
+WindowSize->{1264, 637},
+WindowMargins->{{-8, Automatic}, {Automatic, 0}},
+Magnification->1.5,
+FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (2018\:5e743\:670828\
+\:65e5)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "Info583753546088-4433996"->{
+  Cell[1553, 45, 267, 5, 68, "Print",ExpressionUUID->"7493c936-1319-4155-a4f8-c76d1ce02d84",
+   CellTags->"Info583753546088-4433996"]},
+ "Info593753546088-4433996"->{
+  Cell[1823, 52, 287, 5, 68, "Print",ExpressionUUID->"073df009-56e3-451c-939e-5b7bfb254f7c",
+   CellTags->"Info593753546088-4433996"]},
+ "Info603753546089-4433996"->{
+  Cell[2113, 59, 287, 5, 68, "Print",ExpressionUUID->"33257a0d-b39f-4646-90ae-289a09b83b90",
+   CellTags->"Info603753546089-4433996"]},
+ "Info613753546089-4433996"->{
+  Cell[2403, 66, 453, 8, 171, "Print",ExpressionUUID->"aa074f0f-4b41-4561-86bc-488a50666086",
+   CellTags->"Info613753546089-4433996"]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"Info583753546088-4433996", 9857, 249},
+ {"Info593753546088-4433996", 10024, 252},
+ {"Info603753546089-4433996", 10191, 255},
+ {"Info613753546089-4433996", 10358, 258}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 948, 19, 243, "Input",ExpressionUUID->"4fb45182-8023-4c16-8065-9bec57733d07"],
+Cell[CellGroupData[{
+Cell[1553, 45, 267, 5, 68, "Print",ExpressionUUID->"7493c936-1319-4155-a4f8-c76d1ce02d84",
+ CellTags->"Info583753546088-4433996"],
+Cell[1823, 52, 287, 5, 68, "Print",ExpressionUUID->"073df009-56e3-451c-939e-5b7bfb254f7c",
+ CellTags->"Info593753546088-4433996"],
+Cell[2113, 59, 287, 5, 68, "Print",ExpressionUUID->"33257a0d-b39f-4646-90ae-289a09b83b90",
+ CellTags->"Info603753546089-4433996"],
+Cell[2403, 66, 453, 8, 171, "Print",ExpressionUUID->"aa074f0f-4b41-4561-86bc-488a50666086",
+ CellTags->"Info613753546089-4433996"]
+}, Open  ]]
+}, Open  ]],
+Cell[2883, 78, 2027, 44, 305, "Input",ExpressionUUID->"5fe2bc2e-ad59-43ca-bc57-877381273c6d"],
+Cell[4913, 124, 652, 11, 73, "Input",ExpressionUUID->"aac1bf73-2398-409b-9601-bcc6657afa38"],
+Cell[5568, 137, 516, 12, 102, "Input",ExpressionUUID->"aaa69e04-348d-46d1-93ca-8bc67d0dbb8f"],
+Cell[6087, 151, 908, 22, 127, "Input",ExpressionUUID->"4acd1af3-f134-4ef2-8bb6-6c8983a231c7"],
+Cell[6998, 175, 1268, 29, 181, "Input",ExpressionUUID->"d5a36745-df5e-4d4b-9e89-1a6be3ea83a7"],
+Cell[8269, 206, 1242, 29, 149, "Input",ExpressionUUID->"4bef79b9-5afc-436b-bc3c-ce8f087827c4"]
+}
+]
+*)
+
