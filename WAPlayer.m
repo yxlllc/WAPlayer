@@ -76,7 +76,7 @@ buttonstyle=
 buttonoption={Appearance->"Palette",FrameMargins->0,ImageSize->{25,25}};
 
 MixPlayer[audio_,midi_]:=
-	DynamicModule[{sequencer,options,id,duration,endposition},
+	DynamicModule[{sequencer,options,stream,endposition},
 	
 		If[midi=!=None,
 			If[!JLink`JavaObjectQ[$Synthesizer],
@@ -86,7 +86,7 @@ MixPlayer[audio_,midi_]:=
 			JLink`JavaBlock@sequencer@getTransmitter[]@setReceiver@$Synthesizer@getReceiver[];
 			JLink`JavaBlock@sequencer@setSequence@MediaStream[midi]];
 	
-		id=Last@
+		stream=
 		If[audio=!=None,
 			options=Options[audio];
 			Audio`AudioStreamInternals`createAudioStream[
@@ -99,6 +99,7 @@ MixPlayer[audio_,midi_]:=
 				"Internal",
 				None,
 				Lookup[options,AudioChannelAssignment,Automatic],
+				False,
 				False],
 				
 			Audio`AudioStreamInternals`createAudioStream[
@@ -111,10 +112,10 @@ MixPlayer[audio_,midi_]:=
 				"Internal",
 				None,
 				Automatic,
+				False,
 				False]
 			];
 			
-		duration=Audio`AudioStreamInternalsDump`$audioStreams["Internal",id,"Duration"];
 		endposition=sequencer@getMicrosecondLength[]-1;
 
 	Row[{
@@ -124,7 +125,7 @@ MixPlayer[audio_,midi_]:=
 			If[sequencer@getMicrosecondPosition[]>=endposition,
 				sequencer@setMicrosecondPosition[0]];
 			sequencer@start[];
-			Audio`AudioStreamInternals`playAudioStream["Internal",id],
+			Audio`AudioStreamInternals`playAudioStream@stream,
 		
 			buttonoption],
 		
@@ -132,8 +133,8 @@ MixPlayer[audio_,midi_]:=
 			buttonstyle["Pause"],
 			
 			sequencer@stop[];
-			Audio`AudioStreamInternals`pauseAudioStream["Internal",id];
-			sequencer@setMicrosecondPosition@Min[Round[10^6 Audio`AudioStreamInternalsDump`$audioStreams["Internal",id,"Position"]],endposition],
+			Audio`AudioStreamInternals`pauseAudioStream@stream;
+			sequencer@setMicrosecondPosition@Min[Round[10^6 QuantityMagnitude[stream["Position"],"Seconds"]],endposition],
 			
 			buttonoption],
 			
@@ -141,7 +142,7 @@ MixPlayer[audio_,midi_]:=
 			buttonstyle["Stop"],
 		
 			sequencer@stop[];
-			Audio`AudioStreamInternals`stopAudioStream["Internal",id];
+			Audio`AudioStreamInternals`stopAudioStream@stream;
 			sequencer@setMicrosecondPosition[0],
 			
 			buttonoption],
@@ -150,20 +151,20 @@ MixPlayer[audio_,midi_]:=
 		
 		Slider[
 			Dynamic[
-				Min[Audio`AudioStreamInternalsDump`$audioStreams["Internal",id,"Position"],duration],
+				Min[QuantityMagnitude[stream["Position"],"Seconds"],stream["Duration"]],
 				
 					(sequencer@setMicrosecondPosition@Min[Round[10^6 #],endposition];
-						If[!sequencer@isRunning[]&&Audio`AudioStreamInternalsDump`$audioStreams["Internal",id,"Status"]==="Playing",
+						If[!sequencer@isRunning[]&&stream["Status"]==="Playing",
 							sequencer@start[]];
-						Quiet@Audio`AudioStreamInternalsDump`setAudioStreamPosition["Internal",id,#])&
+						stream["Position"]=Quantity[#,"Seconds"])&
 				],
 				
-			{0,duration},ImageSize->{300,20},Appearance->"Labeled"]
+			{0,stream["Duration"]},ImageSize->{300,20},Appearance->"Labeled"]
 			
 		}],
 		
 	Deinitialization:>
-		(Audio`AudioStreamInternals`removeAudioStream["Internal",id];
+		(Audio`AudioStreamInternals`removeAudioStream@stream;
 			sequencer@close[];
 			JLink`ReleaseJavaObject[sequencer])
 		]
